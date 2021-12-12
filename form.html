@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <form
+        class="
+          col-10 col-md-6
+          border border-1 border-secondary
+          mx-auto
+          p-3
+          rounded-3
+        "
+      >
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control nameInput"
+            placeholder="Name"
+          />
+          <label for="name">Name</label>
+          <div
+            id="nameErr"
+            class="
+              ps-2
+              text-danger
+              border border-2 border-danger
+              d-none
+              fw-bold
+            "
+          ></div>
+        </div>
+        <div class="form-floating my-3">
+            <!-- type = "email" -->
+          <input
+            type="text"
+            class="form-control emailInput"
+            placeholder="Email"
+            value=""
+          />
+          <label for="eamil">Email</label>
+          <div
+            id="emailErr"
+            class="
+              ps-2
+              text-danger
+              border border-2 border-danger
+              d-none
+              fw-bold
+            "
+          ></div>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            class="form-control passInput"
+            placeholder="Password"
+          />
+          <label for="Password">Password</label>
+          <div
+            id="passErr"
+            class="
+              ps-2
+              text-danger
+              border border-2 border-danger
+              d-none
+              fw-bold
+            "
+          ></div>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-success">Proceed</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+        // selecting form
+      const formEl = document.getElementsByTagName("form")[0];
+
+      // selecting Input elements
+      let nameInputEl = document.querySelector(".nameInput"),
+        emailInputEl = document.getElementsByClassName("emailInput"),
+        passInputEl = document.querySelector(".passInput");
+
+      // selecting elements for Error elements
+      let nameErrEl = document.querySelector("#nameErr"),
+        emailErrEl = document.getElementById("emailErr"),
+        passErrEl = document.getElementById("passErr");
+
+      //  Listening submit event on "Form" for validation
+      formEl.addEventListener("submit", (e) => {
+        //   preventing default browser behavior when form is submitted (page refresh)
+        e.preventDefault();
+
+        // calling resetFn -function, if user do mistakes on second and forth coming times also
+        resetFn();
+
+        // checking name input is empty or not
+        if (nameInputEl.value.trim() === "") {
+          errHandler(nameErrEl, "Name should not be blank");
+        } 
+
+        // checking email input  contains small letter and number before '@'-symbol, presence of '@'-symbol, "."-symbol, and after '@' checking for some words like(gmail, outlook etc) and after '.' checking for some words like(com, edu,in etc) in it
+        if (
+          !emailInputEl[0].value.match(/^([a-z0-9]+)@([a-zA-Z]+).([a-z]{2,8})$/)
+        ) {
+          errHandler(emailErrEl, "Enter valid email");
+        } 
+
+        // checking password input contains small letter
+        if (!passInputEl.value.match(/[a-z]/g)) {
+          errHandler(passErrEl, "Atleast need one small letter <br>");
+        }
+
+        // checking password input contains capital letter
+        if (!passInputEl.value.match(/[A-Z]/g)) {
+          errHandler(passErrEl, "Atleast need one capital letter <br>");
+        }
+
+        // checking password input contains 8 characters
+        if (passInputEl.value.length <= 8) {
+          errHandler(passErrEl, "Atleast contain 8 characters <br>");
+        }
+
+        // checking password input contains special character
+        if (!passInputEl.value.match(/[^a-zA-Z\d]/g)) {
+          errHandler(passErrEl, "Atleast need one special character <br>");
+        }
+
+        // checking password input contains number
+        if (!passInputEl.value.match(/[\d]/g)) {
+          errHandler(passErrEl, "Atleast need one number <br>");
+        }
+      });
+
+    //   Function to insert error message on specific element
+      function errHandler(element, message) {
+        element.innerHTML += message;
+        element.classList.remove("d-none");
+      }
+      
+    //   Function to reset styles for error elements
+      function resetFn(element, message) {
+        nameErrEl.innerHTML = "";
+        emailErrEl.innerHTML = "";
+        passErrEl.innerHTML = "";
+
+        nameErrEl.classList.add("d-none");
+        emailErrEl.classList.add("d-none");
+        passErrEl.classList.add("d-none");
+      }
+    </script>
+  </body>
+</html>
