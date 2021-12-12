@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cell Task2 - MatheshRx</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-around;
+        padding: 1rem;
+        background-color: rgba(15, 221, 228, 0.952);
+        max-width: 700px;
+        margin-inline: auto;
+        border-radius: 10px;
+      }
+
+      .col {
+        padding: 0.5rem;
+        border: 2px solid #fff;
+        border-radius: 0.3rem;
+      }
+
+      .child {
+        padding: 0.5rem;
+        margin-block: 0.5rem;
+        border: 2px solid #fff;
+        box-shadow: inset 1px 0 8px rgb(43, 41, 41);
+        border-radius: 5px;
+      }
+
+      h3 {
+        margin-block: 0px;
+      }
+
+      .btn-wrapper {
+        text-align: center;
+        margin-top: 1rem;
+      }
+
+      button {
+        border-radius: 0.4rem;
+        color: white;
+        background-color: deepskyblue;
+        border: none;
+        padding: 0.3rem 0.5rem;
+        font-size: 1.5rem;
+        margin-inline: 0.5rem;
+      }
+
+      .col.current {
+        background-color: #fff;
+        box-shadow: 0px 0px 4px 2px rgb(230, 23, 202);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="col col1" onclick="selectColumn(this)">
+        <h3>Column - 1</h3>
+        <div class="col1-child child">child - 1</div>
+        <div class="col1-child child">child - 2</div>
+        <div class="col1-child child">child - 3</div>
+        <div class="col1-child child">child - 4</div>
+      </div>
+      <div class="col col2" onclick="selectColumn(this)">
+        <h3>Column - 2</h3>
+        <div class="col2-child child">child - 1</div>
+        <div class="col2-child child">child - 2</div>
+        <div class="col2-child child">child - 3</div>
+        <div class="col2-child child">child - 4</div>
+      </div>
+      <div class="col col3" onclick="selectColumn(this)">
+        <h3>Column - 3</h3>
+        <div class="col3-child child">child - 1</div>
+        <div class="col3-child child">child - 2</div>
+        <div class="col3-child child">child - 3</div>
+        <div class="col3-child child">child - 4</div>
+      </div>
+      <div class="col col4" onclick="selectColumn(this)">
+        <h3>Column - 4</h3>
+        <div class="col4-child child">child - 1</div>
+        <div class="col4-child child">child - 2</div>
+        <div class="col4-child child">child - 3</div>
+        <div class="col4-child child">child - 4</div>
+      </div>
+    </div>
+
+    <div class="btn-wrapper">
+      <button onclick="moveColumn()"><b>&lt;</b></button>
+      <button onclick="moveColumn('right')"><b>&gt;</b></button>
+    </div>
+
+    <script>
+      let parent = document.querySelector(".container");
+
+      function selectColumn(element) {
+        let current = document.querySelector(".current");
+        if (current) {
+          //  to deselect
+          if (current == element) {
+            current.classList.remove("current");
+            return;
+          }
+          current.classList.remove("current");
+        }
+        element.classList.add("current");
+      }
+
+      function moveColumn(direction = "left") {
+        let current = document.querySelector(".current");
+
+        if (current) {
+          if (direction == "left") {
+            let previousElement = current.previousElementSibling;
+
+            if (previousElement) {
+              console.log(previousElement);
+              parent.insertBefore(current, previousElement);
+            } else {
+              alert("Can't move");
+            }
+          } else {
+            if (current.nextElementSibling) {
+              let nextElement = current.nextElementSibling.nextSibling;
+              console.log("From here", current.nextElementSibling);
+              parent.insertBefore(current, nextElement);
+            } else {
+              alert("Can't move");
+            }
+          }
+        } else {
+          alert("Select the column to move");
+        }
+      }
+    </script>
+  </body>
+</html>

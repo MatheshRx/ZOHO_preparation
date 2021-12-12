@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cell - MatheshRx</title>
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        background-color: #2196f3;
+        gap: 1rem;
+        padding: 10px;
+        max-width: 600px;
+        margin-inline: auto;
+      }
+      .container > div {
+        padding: 10px;
+        background-color: #ccc;
+      }
+      .container .current {
+        background-color: rgb(41, 207, 207);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- ! Row-1 col-1 -->
+      <div class="row1Col1 grid-item" onclick="changeColor(this)">
+        Row-1Col-1
+      </div>
+      <div class="row1Col2 grid-item" onclick="changeColor(this)">
+        Row-1Col-2
+      </div>
+      <div class="row1Col3 grid-item" onclick="changeColor(this)">
+        Row-1Col-3
+      </div>
+      <div class="row1Col4 grid-item" onclick="changeColor(this)">
+        Row-1Col-4
+      </div>
+      <!-- ! Row-2 col-2 -->
+      <div class="row2Col1 grid-item" onclick="changeColor(this)">
+        Row-2Col-1
+      </div>
+      <div class="row2Col2 grid-item" onclick="changeColor(this)">
+        Row-2Col-2
+      </div>
+      <div class="row2Col3 grid-item" onclick="changeColor(this)">
+        Row-2Col-3
+      </div>
+      <div class="row2Col4 grid-item" onclick="changeColor(this)">
+        Row-2Col-4
+      </div>
+      <!-- ! Row-3 col-3 -->
+      <div class="row3Col1 grid-item" onclick="changeColor(this)">
+        Row-3Col-1
+      </div>
+      <div class="row3Col2 grid-item" onclick="changeColor(this)">
+        Row-3Col-2
+      </div>
+      <div class="row3Col3 grid-item" onclick="changeColor(this)">
+        Row-3Col-3
+      </div>
+      <div class="row3Col4 grid-item" onclick="changeColor(this)">
+        Row-3Col-4
+      </div>
+      <!-- ! Row-4 col-4 -->
+      <div class="row1Col1 grid-item" onclick="changeColor(this)">
+        Row-4Col-1
+      </div>
+      <div class="row2Col2 grid-item" onclick="changeColor(this)">
+        Row-4Col-2
+      </div>
+      <div class="row3Col3 grid-item" onclick="changeColor(this)">
+        Row-4Col-3
+      </div>
+      <div class="row4Col4 grid-item" onclick="changeColor(this)">
+        Row-4Col-4
+      </div>
+    </div>
+    <script>
+      function changeColor(element) {
+        let current = document.querySelector(".current");
+        if (current) {
+          if (current == element) {
+            element.classList.remove("current");
+            return;
+          }
+          current.classList.remove("current");
+        }
+        element.classList.add("current");
+      }
+    </script>
+  </body>
+</html>

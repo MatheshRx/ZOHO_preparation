@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview</title>
+  </head>
+  <body>
+    <script>
+      function rotateArray(value) {
+        let arr = [];
+        for (let i = 1; i <= value; i++) {
+          arr.push(i);
+        }
+        for (let j = 0; j < arr.length; j++) {
+          if (j === 0) {
+            console.log(arr);
+          } else {
+            let firstVal = arr.shift();
+            arr.push(firstVal);
+            console.log(arr);
+          }
+        }
+      }
+      // rotateArray(3);
+
+      // function rotateArray(value){
+      //   for(let i = 0; i < value; i--){
+      //     // let n = value - i;
+      //     console.log(i);
+      //   }
+      // }
+
+      function count(arr) {
+        // var cnt = 0;
+        var result = {};
+        for (i = 0; i < arr.length; i++) {
+          if (result[arr[i]]) {
+            // result[arr[i]] = cnt + 1;
+            result[arr[i]] = result[arr[i]] + 1;
+          } else {
+            result[arr[i]] = 1;
+          }
+        }
+        for (let prop in result) {
+          console.log(`${prop} - ${result[prop]}`);
+        }
+        console.log(result);
+      }
+
+      // count([1, 2, 4, 1, 2]);
+
+      function randomWords(str) {
+        let index = Math.floor(Math.random() * str.length + 0);
+        console.log(index);
+      }
+      // randomWords("good");
+
+      function series(n) {
+        let string = "";
+        let count = 1;
+        for (let i = 1; i <= n; i++) {
+          for (let j = 0; j < n - i; j++) {
+            string += " ";
+          }
+          for (let k = 0; k < i; k++) {
+            string += count;
+            string += " ";
+            count++;
+          }
+          console.log(string);
+          string = "";
+        }
+      }
+
+      series(5);
+
+      function expression(str) {
+        let symRegex = /[^a-zA-Z\d]/g;
+        let numRegex = /[\d]/g;
+        let result;
+        if (str.match(symRegex) && str.match(numRegex)) {
+          let symbols = str.match(symRegex);
+          let numbers = str.match(numRegex);
+          result = numbers[0];
+          for (let i = 0; i < symbols.length; i++) {
+            result = `${result} ${symbols[i]} ${numbers[i + 1]}`;
+            result = eval(result);
+          }
+        } else {
+          return;
+        }
+        return result;
+      }
+      let expressionResult = expression("374291--*+-"); //expression("12345*+-+");
+      // console.log(expressionResult);
+
+      let ar = [1, 2, 3, 4, 2, 4];
+      let ob = {};
+      for (let v of ar) {
+        ob[v] ? (ob[v] += 1) : (ob[v] = 1);
+      }
+      console.log(ob);
+    </script>
+  </body>
+</html>
